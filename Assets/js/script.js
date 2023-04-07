@@ -15,33 +15,6 @@
       dayjs().hour(16).format('hA'),
       dayjs().hour(17).format('hA')
   ];
-
-  function changeBlockTime(timeBlockSpace, hour) {
-    var currentTimeBlock = dayjs(hour.text(), 'hA').hour();
-    $(timeBlockSpace).removeClass('past present future');
-  
-    if (currentTimeBlock > hourCurrent) {
-      $(timeBlockSpace).addClass('future');
-    } else if (currentTimeBlock === hourCurrent) {
-      $(timeBlockSpace).addClass('present');
-    } else {
-      $(timeBlockSpace).addClass('past');
-    }
-  }
-
-  function loadTask() {
-      for (var i = 0; i < workDayHours.length; i++) {
-          let task = localStorage.getItem(workDayHours[i])
-  
-          if (task) {
-              $('#' + (i + 9)).siblings().first().children().text(task);
-          }
-      }
-  }
-
-  function saveTask(hour, task) {
-      localStorage.setItem(hour, task);
-  }
   
 // Create time blocks and append to container
   for (var i = 0; i < workDayHours.length; i++) {
@@ -97,6 +70,34 @@
     $(saveBtn).append(saveIcon);
   }
   
+  // Add Time Class to blocks
+  function changeBlockTime(timeBlockSpace, hour) {
+    var currentTimeBlock = dayjs(hour.text(), 'hA').hour();
+    $(timeBlockSpace).removeClass('past present future');
+  
+    if (currentTimeBlock > hourCurrent) {
+      $(timeBlockSpace).addClass('future');
+    } else if (currentTimeBlock === hourCurrent) {
+      $(timeBlockSpace).addClass('present');
+    } else {
+      $(timeBlockSpace).addClass('past');
+    }
+  }
+
+  function loadTask() {
+      for (var i = 0; i < workDayHours.length; i++) {
+          let task = localStorage.getItem(workDayHours[i])
+  
+          if (task) {
+              $('#' + (i + 9)).siblings().first().children().text(task);
+          }
+      }
+  }
+
+  function saveTask(hour, task) {
+      localStorage.setItem(hour, task);
+  }
+
 // Add event listeners for editing task
   $('.col-10').on('click', 'p', function () {
   
