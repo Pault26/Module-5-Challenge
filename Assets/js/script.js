@@ -1,7 +1,7 @@
 
   var currentDayEl = $('#currentDay');
   var containerEl = $('#container');
-  var currentHour = dayjs().hour();
+  var hourCurrent = dayjs().hour();
   var timeBlockHour = $('.col-1 hour')
   var task = $('.description')
   var workDayHours = [
@@ -16,16 +16,16 @@
       dayjs().hour(17).format('hA')
   ];
 
-  function auditTimeBlock(timeBlockEventSpace, hour) {
-    var currentTimeBlockHour = dayjs(hour.text(), 'hA').hour();
-    $(timeBlockEventSpace).removeClass('past present future');
+  function changeBlockTime(timeBlockSpace, hour) {
+    var currentTimeBlock = dayjs(hour.text(), 'hA').hour();
+    $(timeBlockSpace).removeClass('past present future');
   
-    if (currentTimeBlockHour > currentHour) {
-      $(timeBlockEventSpace).addClass('future');
-    } else if (currentTimeBlockHour === currentHour) {
-      $(timeBlockEventSpace).addClass('present');
+    if (currentTimeBlock > hourCurrent) {
+      $(timeBlockSpace).addClass('future');
+    } else if (currentTimeBlock === hourCurrent) {
+      $(timeBlockSpace).addClass('present');
     } else {
-      $(timeBlockEventSpace).addClass('past');
+      $(timeBlockSpace).addClass('past');
     }
   }
 
@@ -58,7 +58,7 @@
         id: i + 9
       })
   
-    var timeBlockEventSpace = $('<div>')
+    var timeBlockSpace = $('<div>')
       .addClass('col-10')
       .attr({
         id: 'time-block-' + (i + 9)
@@ -71,7 +71,7 @@
         id: 'Hour-' + (i + 9)
       });
   
-    auditTimeBlock(timeBlockEventSpace, timeBlockHour);
+    changeBlockTime(timeBlockSpace, timeBlockHour);
   
     var saveBtn = $('<button>')
       .addClass('col-1 saveBtn')
@@ -91,8 +91,8 @@
   
     $(containerEl).append(timeBlockRow);
     $(timeBlockRow).append(timeBlockHour);
-    $(timeBlockRow).append(timeBlockEventSpace);
-    $(timeBlockEventSpace).append(userInput);
+    $(timeBlockRow).append(timeBlockSpace);
+    $(timeBlockSpace).append(userInput);
     $(timeBlockRow).append(saveBtn);
     $(saveBtn).append(saveIcon);
   }
