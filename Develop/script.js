@@ -1,23 +1,136 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-$(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
-});
+
+  var currentDayEl = $('#currentDay');
+  var containerEl = $('#container');
+  var currentHour = dayjs().hour();
+  var timeBlockHour = $('col-1 hour')
+  var task = $('.description')
+  //create array that lists all of the hours for current work day
+  var workDayHours = [
+      dayjs().hour(9).format('hA'),
+      dayjs().hour(10).format('hA'),
+      dayjs().hour(11).format('hA'),
+      dayjs().hour(12).format('hA'),
+      dayjs().hour(13).format('hA'),
+      dayjs().hour(14).format('hA'),
+      dayjs().hour(15).format('hA'),
+      dayjs().hour(16).format('hA'),
+      dayjs().hour(17).format('hA')
+  ];
+
+  var currentDay = dayjs().format('dddd, MMMM DD');
+  currentDayEl.text(currentDay);
+
+  function auditTimeBlock(timeBlockEventSpace) {
+      var currentTimeBlockHour = dayjs($(timeBlockHour).text().trim(), 'hA').hour();
+  
+      $(timeBlockEventSpace).removeClass('past present future');
+
+      if (currentTimeBlockHour > currentHour) {
+          $(timeBlockEventSpace).addClass('future');
+      }
+      else if (currentTimeBlockHour === currentHour) {
+          $(timeBlockEventSpace).addClass('present');
+      }
+      else {
+          $(timeBlockEventSpace).addClass('past');
+      }
+  }
+
+  function loadTask() {
+      for (var i = 0; i < workDayHours.length; i++) {
+          let task = localStorage.getItem(workDayHours[i])
+  
+          if (task) {
+              $('#' + (i + 9)).siblings().first().children().text(task);
+          }
+      }
+  }
+
+  function saveTask(hour, task) {
+      localStorage.setItem(hour, task);
+  }
+  
+
+  for (var i = 0; i < workDayHours.length; i++) {
+      var timeBlockRow = $('<div>')
+          .addClass('row time-block')
+          .attr({
+              id: 'row-' + (i + 9)
+          })
+  
+      var timeBlockHour = $('<div>')
+          .addClass('col-1 hour')
+          .text(workDayHours[i])
+          .attr({
+              id: i + 9
+          })
+  
+      var timeBlockEventSpace = $('<div>')
+          .addClass('col-10')
+          .attr({
+              id: 'time-block-' + (i + 9)
+          })
+  
+      var userInput = $('<p>')
+          .addClass('description')
+          .text(' ')
+          .attr({
+              id: 'Hour-' + (i + 9)
+          });
+  
+      auditTimeBlock(timeBlockEventSpace);
+  
+      var saveBtn = $('<button>')
+          .addClass('col-1 saveBtn')
+          .attr({
+              id: 'save-button-' + (i + 9),
+              type: 'button',
+          })
+          .on('click', function () {
+              var hour = $(this).siblings().first().text();
+              var task = $(this).siblings().last().text();
+              saveTask(hour, task)
+          })
+  
+      var saveIcon = $('<i>')
+          .addClass('fas fa-save');
+  
+
+      $(containerEl).append(timeBlockRow);
+      $(timeBlockRow).append(timeBlockHour);
+      $(timeBlockRow).append(timeBlockEventSpace);
+      $(timeBlockEventSpace).append(userInput);
+      $(timeBlockRow).append(saveBtn);
+      $(saveBtn).append(saveIcon);
+  }
+
+  $('.col-10').on('click', 'p', function () {
+  
+      var text = $(this)
+          .text()
+          .trim()
+  
+      var textInput = $('<textarea>')
+          .addClass('form-control')
+          .val(text);
+  
+      $(this).replaceWith(textInput);
+  
+      textInput.trigger('focus');
+  });
+  
+  $('.col-10').on('blur', 'textarea', function () {
+      var text = $(this)
+          .val()
+          .trim();
+  
+      var userTextP = $("<p>")
+          .addClass("description")
+          .text(text);
+  
+      $(this).replaceWith(userTextP);
+  })
+  
+  loadTask();
+
+// });
