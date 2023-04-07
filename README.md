@@ -1,13 +1,6 @@
 
 <a name="readme-top"></a>
 
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">Workday Planner</h3>
 
 <!-- TABLE OF CONTENTS -->
@@ -41,9 +34,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<img src="Assets\images\projectsc.png"> (https://pault26.github.io/Module-5-Challenge/)
 
-Project Desc
+This project is a daily planner that can be used to track and save tasks during your work day. The project takes the user's input and saves it locally, the planner then keeps track of the hours and changes the color of the timebox accordingly.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -60,11 +53,11 @@ HTML CSS JavaScript JSON and Dayjs
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Fill
+Open the site on your computer and begin filling out your planner. Once you are done with a time box you can click the save button and save the notation for later.
 
 ### Prerequisites
 
-Fill
+N/A
 
 ### Installation
 
@@ -85,7 +78,9 @@ Fill
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Fill
+This project was used to test our abilitiy to use JavaScript and Dayjs to create a calander that can build itself. The project also made use of our ability to use JSON Bootstrap and JQuery to clean up and create better code structure. This project also tested our ability to store and retrieve data for a site on the local machine. 
+
+The website itself is a useful tool for organizing and maintainting a work day.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -94,13 +89,13 @@ Fill
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [x] Add basic JavaScript
+- [x] Add ability to append boxes through JavaScript
+- [x] Add ability to save and store data localy
+- [ ] Ensure function of hour checker functionality
+- [ ] Add ability to clear calander
+    - [ ] Per box
+    - [ ] Per day
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -109,13 +104,8 @@ Fill
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Fill
+Thank you to these sources for providing useful tutorials and resources that were used in completing this project! Could not have done it without help from these sources.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -133,9 +123,9 @@ N/A
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Paul Tuemler - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/Pault26/Module-5-Challenge](https://github.com/Pault26/Module-5-Challenge)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -144,15 +134,21 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+### Youtube
+DarkCode: https://www.youtube.com/watch?v=h7gZY3_3Dqs&t=658s
+Web Dev Simplified: https://www.youtube.com/watch?v=v7rSSy8CaYE
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+### Web Docs
+https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
+
+Special thanks to Clarence Hixon for reviewing and assisting with resolving code errors
+
+If you wish to contribute:
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

@@ -1,4 +1,4 @@
-
+// Select elements and define variables
   var currentDayEl = $('#currentDay');
   var containerEl = $('#container');
   var hourCurrent = dayjs().hour();
@@ -43,7 +43,7 @@
       localStorage.setItem(hour, task);
   }
   
-
+// Create time blocks and append to container
   for (var i = 0; i < workDayHours.length; i++) {
     var timeBlockRow = $('<div>')
       .addClass('row time-block')
@@ -97,7 +97,7 @@
     $(saveBtn).append(saveIcon);
   }
   
-
+// Add event listeners for editing task
   $('.col-10').on('click', 'p', function () {
   
       var text = $(this)
@@ -126,5 +126,3 @@
   })
   
   loadTask();
-
-// });
