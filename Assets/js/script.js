@@ -13,9 +13,13 @@
       dayjs().hour(14).format('hA'),
       dayjs().hour(15).format('hA'),
       dayjs().hour(16).format('hA'),
-      dayjs().hour(17).format('hA')
+      dayjs().hour(17).format('hA'),
   ];
   
+// Gets Current Date and Applies to Header
+var currentDay = dayjs().format('dddd, MMMM DD');
+currentDayEl.text(currentDay);
+
 // Create time blocks and append to container
   for (var i = 0; i < workDayHours.length; i++) {
     var timeBlockRow = $('<div>')
@@ -70,19 +74,24 @@
     $(saveBtn).append(saveIcon);
   }
   
-  // Add Time Class to blocks
+// Add Time Class to blocks
   function changeBlockTime(timeBlockSpace, hour) {
-    var currentTimeBlock = dayjs(hour.text(), 'hA').hour();
+    var currentTimeBlock = dayjs().hour(hour.text(), 'hA').minute(0).second(0);
+    var startOfHour = currentTimeBlock.startOf('hour');
+    var endOfHour = currentTimeBlock.endOf('hour');
+    var isCurrentHour = currentTimeBlock.isSame(dayjs(), 'hour');
+    
     $(timeBlockSpace).removeClass('past present future');
-  
-    if (currentTimeBlock > hourCurrent) {
-      $(timeBlockSpace).addClass('future');
-    } else if (currentTimeBlock === hourCurrent) {
+    
+    if (startOfHour.isBefore(dayjs()) && endOfHour.isBefore(dayjs())) {
+      $(timeBlockSpace).addClass('past');
+    } else if (isCurrentHour) {
       $(timeBlockSpace).addClass('present');
     } else {
-      $(timeBlockSpace).addClass('past');
+      $(timeBlockSpace).addClass('future');
     }
   }
+  
 
   function loadTask() {
       for (var i = 0; i < workDayHours.length; i++) {
